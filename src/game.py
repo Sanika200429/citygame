@@ -3,6 +3,7 @@ Main Game class with state management.
 """
 
 import pygame
+import asyncio
 from config import *
 from src.states.menu import MainMenu
 from src.states.city_select import CitySelect
@@ -47,8 +48,8 @@ class Game:
         self.current_state = self.states['menu']
         self.current_state.enter_state()
 
-    def run(self):
-        """Main game loop."""
+    async def run(self):
+        """Main game loop - async for web compatibility."""
         while self.running:
             dt = self.clock.tick(FPS)
 
@@ -71,6 +72,9 @@ class Game:
                 self.draw_fps()
 
             pygame.display.flip()
+
+            # yield control to browser for web builds
+            await asyncio.sleep(0)
 
         pygame.quit()
 

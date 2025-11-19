@@ -16,6 +16,7 @@ Controls:
 
 import sys
 import os
+import asyncio
 
 # Add src directory to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -23,8 +24,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from src.game import Game
 
 
-def main():
-    """Main entry point."""
+async def main():
+    """Main entry point - async for web compatibility."""
     print("=" * 60)
     print("CITY RUNNER: COAST TO COAST")
     print("=" * 60)
@@ -39,7 +40,7 @@ def main():
 
     try:
         game = Game()
-        game.run()
+        await game.run()
     except Exception as e:
         print(f"\nError: {e}")
         import traceback
@@ -51,4 +52,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    asyncio.run(main())

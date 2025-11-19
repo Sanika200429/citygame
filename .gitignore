@@ -5,7 +5,7 @@ __pycache__/
 *.so
 .Python
 .pytest_cache/
-build/
+build/web-cache/
 develop-eggs/
 dist/
 downloads/
